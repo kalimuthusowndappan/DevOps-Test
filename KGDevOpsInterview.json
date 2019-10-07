@@ -4,6 +4,36 @@
     "Description": "KG DevOps interview CF stack",
 
     "Resources": {
+	       "WebSG": {
+		         "Type": "AWS::EC2::SecurityGroup",
+		         "Properties": {
+			       "GroupDescription": "Web SG",
+			       "VpcId": "vpc-42c15b2b",
+			       "SecurityGroupIngress": [
+				       {
+					   "IpProtocol": "tcp",
+					   "FromPort": "22",
+					   "ToPort": "22",
+					   "CidrIp": "172.0.0.0/8"
+				       }
+			                             ]
+		                      }
+              },
+         "ElbSG": {
+		         "Type": "AWS::EC2::SecurityGroup",
+		         "Properties": {
+			       "GroupDescription": "ELB SG",
+			       "VpcId":  "vpc-42c15b2b",
+			       "SecurityGroupIngress": [
+				           {
+					          "IpProtocol": "tcp",
+					          "FromPort": "443",
+					          "ToPort": "443",
+					          "CidrIp": "0.0.0.0/0"
+			            	}
+			                              ]
+		                      }
+	              },
         "InterviewEC2Instance": {
             "Type": "AWS::EC2::Instance",
             "Properties": {
@@ -15,7 +45,7 @@
                 "UserData": {
                 "Fn::Base64": {
                     "Fn::Join": [
-                            ["#!/bin/bash\n",
+                                ["#!/bin/bash\n",
                             "yum update all -y"]
                                                 ]
             }
