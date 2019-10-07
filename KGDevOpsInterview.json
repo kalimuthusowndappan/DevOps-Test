@@ -83,6 +83,41 @@
   "TargetType": "instance"
   
     }
+},
+"ElasticLoadBalancer": {
+    "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+    "DependsOn": [
+      "TGTest"
+],
+  "Properties": {
+    "Name": "elb01",
+    "SecurityGroups": [
+  {
+    "Ref": "ElbSG"
+  }
+],
+"Subnets": ["subnet-76c2a71f","subnet-1577ae58","subnet-7b041b03"],
+"Scheme": "internal",
+"Type" : "application"
+}
+},
+"ALBListener": {
+"Type": "AWS::ElasticLoadBalancingV2::Listener",
+"DependsOn": [
+"ElasticLoadBalancer"
+],
+"Properties": {
+"DefaultActions": [
+  {
+         
+    "Type": "forward",
+    "TargetGroupArn": { "Ref": "TGTest" }
+  }
+],
+"LoadBalancerArn": {"Ref": "ElasticLoadBalancer"},
+"Port": 80,
+"Protocol": "HTTP"
+}
 }
 }
 }
