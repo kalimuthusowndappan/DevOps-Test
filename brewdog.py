@@ -27,4 +27,19 @@ def parse_data(url,abv_limit=6):
     print('Stage 1')
     for i in json_data_list:
         print(i['name'],i['abv'])
-        
+    print ('Bonus Stage : Printing only the beers with ABV greater than {}'.format(abv_limit,))
+    for i in json_data_list:
+        if i['abv'] > abv_limit:
+            print(i['name'],i['abv'])
+    
+    print ('List of Beers with ABV values in Descending Order')
+    #sorted_data_by_abv_descending = json_data_list.sort(key='abv', reverse=True)
+
+    sorted_data_by_abv_descending = sorted(json_data_list, key=lambda k: k['abv'], reverse=True)
+    for i in sorted_data_by_abv_descending:
+        print(i['name'],i['abv'])
+
+
+if __name__ == '__main__':
+    # execute only if run as the entry point into the program
+    main()
