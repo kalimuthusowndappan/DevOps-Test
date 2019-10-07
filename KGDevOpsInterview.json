@@ -58,6 +58,31 @@
                     "Description": "The Instance ID",
                     "Value" : { "Ref" : "InterviewEC2Instance" }
     }
+  },
+  "TGTest": {
+    "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+    "Properties": {
+        "HealthCheckIntervalSeconds": 15,
+        "HealthCheckPath": "/",
+        "HealthCheckProtocol": "HTTP",
+        "HealthCheckTimeoutSeconds": 10,
+        "HealthyThresholdCount": 2,
+        "UnhealthyThresholdCount": 2,
+        "Matcher": {
+            "HttpCode": "200-299"
+        },
+        "Port": 80,
+        "Protocol": "HTTP",
+  "VpcId": "vpc-42c15b2b",
+  "Targets" :   [ 
+  {
+    "Id" : { "Ref": "InterviewEC2Instance" },
+    "Port" : 80
   }
+],
+  "TargetType": "instance"
+  
+    }
+}
 }
 }
