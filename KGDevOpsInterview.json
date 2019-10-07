@@ -52,6 +52,12 @@
         }
 
     }
+  },
+            "Outputs" : {
+                "InstanceID" : {
+                    "Description": "The Instance ID",
+                    "Value" : { "Ref" : "InterviewEC2Instance" }
+    }
   }
 }
 }
