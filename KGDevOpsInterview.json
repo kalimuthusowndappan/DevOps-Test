@@ -46,7 +46,8 @@
                 "Fn::Base64": {
                     "Fn::Join": [
                                 ["#!/bin/bash\n",
-                            "yum update all -y"]
+                            "yum update all -y\n",
+                            "aws sqs get-queue-url MyQueue"]
                                                 ]
             }
         }
