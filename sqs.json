@@ -1,0 +1,14 @@
+{
+"Resources": {
+    "SQSQueue":{
+     "Type" : "AWS::SQS::Queue",
+     "Properties" : {
+      "DelaySeconds": 5,
+      "MaximumMessageSize": 262144,
+      "MessageRetentionPeriod": 345600,
+      "ReceiveMessageWaitTimeSeconds": 0,
+      "QueueName": "MyQueue"
+   }
+}
+}
+}
